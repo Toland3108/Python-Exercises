@@ -1,0 +1,13 @@
+words = ""
+last_word = None
+while True:
+    word = input("Please type in a word")
+    if word == "end":
+        break
+    elif last_word == word:
+        break
+    else:
+        last_word = word
+        words += word + " "
+print(words)
+#Use of None was not my idea, but found via googling how to detect copy of the same word.
