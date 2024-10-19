@@ -1,0 +1,6 @@
+limit = int(input("Upper limit:"))
+number = 1
+multiplier = int(input("Multiplier:"))
+while number <= limit:
+    print(number)
+    number *= multiplier

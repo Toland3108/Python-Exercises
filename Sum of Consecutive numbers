@@ -1,0 +1,14 @@
+limit = int(input("Limit:"))
+number = 0
+number_sum = 0
+calc = ""
+
+while number_sum < limit:
+    number += 1
+    number_sum += number
+    if number_sum >= limit:
+        calc_additive = f" {number} "
+    else:
+             calc_additive = f" {number} +"
+    calc += calc_additive
+print(f"The consecutive sum: {calc} = {number_sum}")
