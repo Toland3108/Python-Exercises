@@ -1,0 +1,8 @@
+while True:
+    underliner = "-"
+    typed_string = input("Please type in a string:")
+
+    print(typed_string)
+    print(underliner * len(typed_string))
+    if len(typed_string) == 0:
+        break

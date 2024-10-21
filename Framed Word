@@ -1,0 +1,15 @@
+string_input = input("Word:")
+frame_symbol = "*"
+spaces = " "
+fillers = (28 - len(string_input)) // 2
+border = frame_symbol * 30
+middle = frame_symbol + (fillers * spaces) + string_input + (fillers * spaces) + frame_symbol
+
+if len(middle) < 30:
+    middle = frame_symbol + (fillers * spaces) + string_input + (fillers * spaces) + spaces + frame_symbol
+elif len(middle) > 30:
+    middle = frame_symbol + (fillers * spaces) + string_input + (fillers * spaces) - spaces + frame_symbol
+
+print(border)
+print(middle)
+print(border)

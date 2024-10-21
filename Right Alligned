@@ -1,0 +1,8 @@
+string_input = input("Please type in a string:")
+character_amount = 20
+filler = "*"
+
+if string_input != character_amount:
+    print(filler * (character_amount - len(string_input)) + string_input)
+else:
+    print(string_input)
