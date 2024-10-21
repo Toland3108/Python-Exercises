@@ -1,0 +1,8 @@
+string1 = input("Provide First String:")
+string2 = input("Provide Second String:")
+if len(string1) > len(string2):
+    print(f"{string1} is longer")
+elif len(string1) < len(string2):
+    print(f"{string2} is longer")
+else:
+    print("The strings are equally long")
