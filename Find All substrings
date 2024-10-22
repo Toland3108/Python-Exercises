@@ -1,0 +1,11 @@
+word_input = input("Please type in a word")
+character = input("Please type in a character:")
+
+while True:
+    index = word_input.find(character)
+    if len(word_input) < 3:
+        break
+    printed_word = word_input[index : + 3]
+    if len(printed_word) == 3:
+        print(printed_word)
+    word_input = word_input [1 : ]
