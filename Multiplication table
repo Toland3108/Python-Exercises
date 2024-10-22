@@ -1,0 +1,10 @@
+limit = int(input("Please type in a number:"))
+if limit > 0:
+    number1 = 1
+    number2 = 0
+    while number1 <= limit:
+        number2 += 1
+        print(f"{number1} x {number2} = {number1 * number2}")
+        while number2 == limit:
+            number1 += 1
+            number2 = 0
