@@ -1,0 +1,9 @@
+sentence = input("Please type in a sentence:")
+index = 0
+while True:
+    space = sentence.find(" ")
+    first_letter = sentence[index]
+    print(first_letter)
+    sentence = sentence[space + 1: ]
+    if space == -1:
+        break
