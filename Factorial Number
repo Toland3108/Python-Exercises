@@ -1,0 +1,14 @@
+while True:
+    number = int(input("Please type in an number:"))
+    if number <= 0:
+        break
+    else:
+        incr_number = 1
+        last_result = 1
+        while incr_number <= number:
+            multi = last_result * incr_number
+            incr_number += 1
+            last_result = multi
+
+        print(f"The factorial of the number {number} is {multi}")
+print("Thanks and bye!")
