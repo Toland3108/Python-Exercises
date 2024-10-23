@@ -1,0 +1,14 @@
+end_number = int(input("Please type in a number: "))
+number1 = 2
+number2 = 1
+
+while True:
+    if number1 <= end_number:
+        print(number1)
+    if number2 > end_number:
+        break
+    print(number2)
+    number1 += 2
+    number2 += 2
+
+    #I struggled with this one for a good while. Ended up googling for help and managed to succeed.
