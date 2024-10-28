@@ -1,0 +1,19 @@
+# Write your solution here
+def spruce(size: int):
+    printed_mark = "*"
+    mark_amount = 1
+    counter = 0
+    space = " "
+    spaces_amount = size - 1
+    print("a spruce!")
+    while counter < size:
+        print(space * spaces_amount + printed_mark * mark_amount)
+        mark_amount += 2
+        spaces_amount -= 1
+        counter += 1
+    spaces_amount = size - 1
+    print(space* spaces_amount + printed_mark)
+        
+# You can test your function by calling it within the following block
+
+spruce(5)

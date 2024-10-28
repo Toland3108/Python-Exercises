@@ -1,0 +1,23 @@
+# Copy here code of line function from previous exercise and use it in your solution
+def line(amount: int, mark: str):
+    if mark == "":
+        mark = "*"
+    print(amount * mark[0])
+    
+def triangle(size: int, mark: str):
+    counter = 0
+    changing_size = 1
+    while counter < size:
+        line(changing_size, mark)
+        changing_size += 1
+        counter += 1
+        
+def shape(triangle_size: int, triangle_mark: str, line_size: int, line_mark: str):
+    triangle(triangle_size, triangle_mark)
+    counter = 0
+    while counter < line_size:
+        line(triangle_size, line_mark)
+        counter += 1
+# You can test your function by calling it within the following block
+
+shape(5, "x", 2, "o")
