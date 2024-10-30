@@ -1,0 +1,10 @@
+list = []
+while True:
+    added_num = int(input("New Item:"))
+    if added_num == 0:
+        print("Bye!")
+        break
+    list.append(added_num)
+    print(f"The list now: {list}")
+    list_order = sorted(list)
+    print(f"The list in order: {list_order}")

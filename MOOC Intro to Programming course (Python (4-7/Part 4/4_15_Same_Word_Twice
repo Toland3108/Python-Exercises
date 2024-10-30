@@ -1,0 +1,9 @@
+list = []
+words = 0
+while True:
+    word = input("Word:")
+    if word in list:
+        break
+    list.append(word)
+    words += 1
+print(f"You typed in {words} different words")

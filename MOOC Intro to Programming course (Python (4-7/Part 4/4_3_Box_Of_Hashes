@@ -1,0 +1,13 @@
+def line(amount: int, mark: str):
+    if mark == "":
+        mark = "*"
+    print(amount * mark[0])
+    
+def box_of_hashes(height):
+    counter = 0
+    while counter < height:
+        line(10, "#")
+        counter += 1
+
+
+box_of_hashes(5)

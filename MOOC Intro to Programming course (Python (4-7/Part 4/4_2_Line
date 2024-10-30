@@ -1,0 +1,7 @@
+def line(amount: int, mark: str):
+    if mark == "":
+        mark = "*"
+    print(amount * mark[0])
+
+
+line(5, "x")

@@ -1,0 +1,9 @@
+
+def mean(list:list):
+    mean_result = sum(list) / len(list)
+    return mean_result
+
+
+my_list = [3, 6, -4]
+result = mean(my_list)
+print(result)

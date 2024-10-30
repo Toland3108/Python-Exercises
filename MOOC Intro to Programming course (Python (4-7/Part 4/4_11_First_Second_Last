@@ -1,4 +1,3 @@
-# Write your solution here
 def first_word(first):
     word1 = first.split(" ")[1-1]
     return (word1)
@@ -10,7 +9,7 @@ def second_word(second):
 def last_word(last):
     word3 = last.split(" ")[-1]
     return (word3)
-# You can test your function by calling it within the following block
+
 
 sentence = "once upon a time there was a programmer"
 print(first_word(sentence))

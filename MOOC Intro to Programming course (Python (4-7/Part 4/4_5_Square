@@ -1,0 +1,13 @@
+def line(amount: int, mark: str):
+    if mark == "":
+        mark = "*"
+    print(amount * mark[0])
+
+def square(size, character):
+    counter = 0
+    while counter < size:
+        line(size, character)
+        counter +=1
+
+
+square(5, "x")

@@ -1,0 +1,10 @@
+items_count = int(input("How many items?"))
+counter = 0
+item_number = 1
+list = []
+while counter < items_count:
+    item = (int(input(f"Item {item_number}:")))
+    list.append(item)
+    item_number += 1
+    counter += 1
+print(list)

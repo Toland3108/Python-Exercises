@@ -1,0 +1,13 @@
+def line(amount: int, mark: str):
+    if mark == "":
+        mark = "*"
+    print(amount * mark[0])
+    
+def square_of_hashes(size):
+    counter = 0
+    while counter < size:
+        line(size, "#")
+        counter += 1
+
+
+square_of_hashes(5)

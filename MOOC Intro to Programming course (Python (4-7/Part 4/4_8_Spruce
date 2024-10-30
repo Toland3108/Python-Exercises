@@ -1,4 +1,3 @@
-# Write your solution here
 def spruce(size: int):
     printed_mark = "*"
     mark_amount = 1
@@ -13,7 +12,5 @@ def spruce(size: int):
         counter += 1
     spaces_amount = size - 1
     print(space* spaces_amount + printed_mark)
-        
-# You can test your function by calling it within the following block
 
 spruce(5)

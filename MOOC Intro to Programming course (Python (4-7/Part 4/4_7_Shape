@@ -1,4 +1,3 @@
-# Copy here code of line function from previous exercise and use it in your solution
 def line(amount: int, mark: str):
     if mark == "":
         mark = "*"
@@ -18,6 +17,6 @@ def shape(triangle_size: int, triangle_mark: str, line_size: int, line_mark: str
     while counter < line_size:
         line(triangle_size, line_mark)
         counter += 1
-# You can test your function by calling it within the following block
+
 
 shape(5, "x", 2, "o")

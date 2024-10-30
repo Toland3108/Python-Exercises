@@ -1,10 +1,8 @@
-# Copy here code of line function from previous exercise
 def line(amount: int, mark: str):
     if mark == "":
         mark = "*"
     print(amount * mark[0])
-def triangle(size):
-    # You should call function line here with proper parameters
+def triangle(size: int):
     counter = 0
     changing_size = 1
     while counter < size:
@@ -12,6 +10,6 @@ def triangle(size):
         changing_size += 1
         counter += 1
 
-# You can test your function by calling it within the following block
+
 
 triangle(5)

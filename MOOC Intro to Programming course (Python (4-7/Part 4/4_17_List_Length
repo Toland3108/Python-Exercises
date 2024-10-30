@@ -1,0 +1,9 @@
+def length(list: list):
+    result = len(list)
+    return result
+
+
+
+my_list = [3, 6, -4]
+result = length(my_list)
+print(f"the length is {result}")

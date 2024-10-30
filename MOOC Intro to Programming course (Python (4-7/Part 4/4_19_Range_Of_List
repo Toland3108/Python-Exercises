@@ -1,0 +1,12 @@
+# Write your solution here
+def range_of_list(list: list):
+    max_num = max(list)
+    min_num = min(list)
+    result = max_num - (min_num)
+    return result
+    
+# You can test your function by calling it within the following block
+
+my_list = [3, 6, -4]
+result = range_of_list(my_list)
+print(result)
