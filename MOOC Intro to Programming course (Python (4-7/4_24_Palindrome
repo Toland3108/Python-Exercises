@@ -1,0 +1,15 @@
+def palindromes(word: str):
+    list_used = list(word)
+    if list_used == list_used [::-1]:
+        return True
+    else:
+        return False
+
+while True:
+    string_word = input("Please type in a palindrome")
+    check = palindromes(string_word)
+    if check == True:
+        print(f"{string_word} is a palindrome!")
+        break
+    else:
+        print("that wasn't a palindrome")

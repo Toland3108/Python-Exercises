@@ -1,0 +1,5 @@
+integer_N = int(input("Please type a positive integer number:"))
+for number in range(-integer_N, integer_N+ 1, 1):
+    if number == 0:
+        continue
+    print(number)

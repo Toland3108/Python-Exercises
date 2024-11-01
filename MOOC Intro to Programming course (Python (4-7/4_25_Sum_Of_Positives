@@ -1,0 +1,15 @@
+def sum_of_positives(ulist: list):
+    positive = []
+    negative = []
+    for number in ulist:
+        if number >= 0:
+            positive.append(number)
+        else:
+            negative.append(number)
+    result = sum(positive)
+    return result
+
+
+my_list = [1, -2, 3, -4, 5]
+result = sum_of_positives(my_list)
+print("The result is", result)

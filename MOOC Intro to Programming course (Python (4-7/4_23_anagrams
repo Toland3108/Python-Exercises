@@ -1,0 +1,13 @@
+def anagrams(word1:str,word2:str):
+    list1 = list(word1)
+    list2 = list(word2)
+    list1.sort()
+    list2.sort()
+    if list1 == list2:
+        return True
+    else:
+        return False
+
+
+print(anagrams("cat", "cat"))
+print(anagrams("cat", "dog"))

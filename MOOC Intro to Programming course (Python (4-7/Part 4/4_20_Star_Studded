@@ -1,0 +1,4 @@
+input_str = input("Please input word:")
+for character in input_str:
+    print(character)
+    print("*")
