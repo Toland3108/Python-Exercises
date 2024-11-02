@@ -1,0 +1,9 @@
+def shortest(used_list: list):
+    shortest = min(used_list, key=len)
+    return shortest
+
+
+
+my_list = ["first", "second", "fourth", "eleventh"]
+result = shortest(my_list)
+print(result)

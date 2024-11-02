@@ -1,0 +1,9 @@
+def length_of_longest(used_list: list):
+    longest = max(used_list, key=len)
+    amount = len(longest)
+    return amount
+
+
+my_list = ["first", "second", "fourth", "eleventh"]
+result = length_of_longest(my_list)
+print(result)
