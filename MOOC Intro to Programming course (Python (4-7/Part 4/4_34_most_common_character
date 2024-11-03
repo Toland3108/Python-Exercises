@@ -1,0 +1,7 @@
+def most_common_character(word: str):
+    list_str = list(word)
+    return max(set(list_str), key = list_str.count)
+    
+
+first_string = "abcdbde"
+print(most_common_character(first_string))

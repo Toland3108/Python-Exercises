@@ -1,0 +1,13 @@
+def everything_reversed(og_list: list):
+    reversed = []
+    for word in og_list:
+        word_reversed = word[::-1]
+        reversed.append(word_reversed)
+    result = reversed[::-1]
+
+    return result
+
+
+my_list = ["Hi", "there", "example", "one more"]
+new_list = everything_reversed(my_list)
+print(new_list)

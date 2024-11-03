@@ -1,0 +1,116 @@
+exam_points = []
+exam_points_no_fail = []
+exercises = []
+exercises_no_fail = []
+students = 0
+failures = 0
+while True:
+    input_data = (input("Exam points and exercises completed:"))
+    if input_data == "":
+        break
+    else:
+       data_list = input_data.split()
+       exam_points.append(int(data_list[0]))
+       exam_points_no_fail.append(int(data_list[0]))
+       exercises.append(int(data_list[1]))
+       exercises_no_fail.append(int(data_list[1]))
+       students += 1
+       
+for number in exam_points:
+    if number < 10:
+        removed_index = exam_points.index(number)
+        exercises_no_fail.pop(removed_index)
+        exam_points_no_fail.remove(number)
+        failures += 1
+       
+def exercise_points(exercises: list):
+    exercise_points = []
+    for number in exercises:
+       points_float = number / 10
+       points = int(points_float)
+       exercise_points.append(points)
+    return exercise_points
+
+def points_calc(exa_points: list, exe_points: list):
+    combined_points = []
+    index = 0
+    while index < len(exa_points):
+        combined = exa_points[index] + exe_points[index]
+        combined_points.append(combined)
+        index +=1
+    return combined_points
+
+
+def grader(points):
+    grades_list = []
+    failure_counter = failures
+    failure_check = 0
+    for number in points:
+        if number <= 14:
+            failure_counter += 1
+        elif number >= 15 and number <= 17:
+            grades_list.append(1)
+        elif number >= 18 and number <= 20:
+            grades_list.append(2)
+        elif number >= 21 and number <= 23:
+            grades_list.append(3)
+        elif number >= 24 and number <= 27:
+            grades_list.append(4)
+        elif number >= 28 and number <= 30:
+            grades_list.append(5)
+    while failure_check < failure_counter:
+        grades_list.append(0)
+        failure_check += 1
+    return grades_list
+
+def points_avarage(points: list):
+    all_together = sum(points)
+    avarage = all_together / len(points)
+    return avarage
+
+
+
+
+
+exe = exercise_points(exercises_no_fail)
+point = points_calc(exam_points_no_fail, exe)
+grades = grader(point)
+grade_0 = 0
+grade_1 = 0
+grade_2 = 0
+grade_3 = 0
+grade_4 = 0
+grade_5 = 0
+for grade in grades:
+    if grade == 0:
+        grade_0 += 1
+    elif grade == 1:
+        grade_1 += 1
+    elif grade == 2:
+        grade_2 += 1
+    elif grade == 3:
+        grade_3 += 1
+    elif grade == 4:
+        grade_4 += 1
+    elif grade == 5:
+        grade_5 += 1
+
+exe_all = exercise_points(exercises)
+point_all = points_calc(exam_points, exe_all)
+rounded_avarage = round(points_avarage(point_all), 1)
+
+
+failure = grade_0/students
+pass_rate =(1-failure) * 100
+rounded_pass_rate = round(pass_rate, 1)
+       
+print("Statistics:")
+print(f"Points average: {rounded_avarage}")
+print(f"Pass percentage: {rounded_pass_rate}")
+print("Grade distribution:")
+print("  5: " + ("*" * grade_5))
+print("  4: " + ("*" * grade_4))
+print("  3: " + ("*" * grade_3))
+print("  2: " + ("*" * grade_2))
+print("  1: " + ("*" * grade_1))
+print("  0: " + ("*" * grade_0))

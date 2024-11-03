@@ -1,0 +1,14 @@
+def longest_series_of_neighbours(og_list: list):
+    longest = 1
+    result = 1
+    for number in range(1, len(og_list)):
+        if abs(og_list[number-1]-og_list[number]) == 1:
+            result += 1
+        else:
+            result = 1
+        longest = max(longest, result)
+    return longest
+ 
+
+my_list = [1, 2, 5, 7, 6, 5, 6, 3, 4, 1, 0]
+print(longest_series_of_neighbours(my_list))
