@@ -1,0 +1,12 @@
+def transpose(matrix: list):
+    matrix_copy = [row.copy() for row in matrix]
+    row = 0
+    while row in range(len(matrix)):
+        column = 0
+        while column in range(len(matrix[row])):
+            matrix[row][column] = matrix_copy[column][row]
+            column += 1
+        row += 1
+        
+if __name__ == "__main__":
+    transpose([[1, 2], [1, 2]])

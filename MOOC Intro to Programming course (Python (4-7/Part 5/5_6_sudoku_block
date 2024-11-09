@@ -1,0 +1,29 @@
+def block_correct(sudoku: list, row_no: int, column_no: int):
+    row = 0
+    column = 0
+    checked_numbers = []
+    while row < 3:
+        while column < 3:
+            if sudoku[row_no + row][column_no + column] in checked_numbers and sudoku[row_no + row][column_no + column] != 0:
+                return False
+            checked_numbers.append(sudoku[row_no + row][column_no + column])
+            column += 1
+        column = 0
+        row += 1
+    return True
+ 
+ 
+
+sudoku = [
+[9, 0, 0, 0, 8, 0, 3, 0, 0],
+[2, 0, 0, 2, 5, 0, 7, 0, 0],
+[0, 2, 0, 3, 0, 0, 0, 0, 4],
+[2, 9, 4, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 7, 3, 0, 5, 6, 0],
+[7, 0, 5, 0, 6, 0, 4, 0, 0],
+[0, 0, 7, 8, 0, 3, 9, 0, 0],
+[0, 0, 1, 0, 0, 0, 0, 0, 3],
+[3, 0, 0, 0, 0, 0, 0, 0, 2]
+]
+
+print(block_correct(sudoku,0,0))

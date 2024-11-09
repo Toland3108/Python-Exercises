@@ -1,0 +1,78 @@
+def row_correct(sudoku: list, row_no: int):
+    numbers_checked = []
+    for number in sudoku[row_no]:
+        if number !=0 and number in numbers_checked:
+            return False
+        numbers_checked.append(number)
+    return True
+
+def column_correct(sudoku: list, column_no: int):
+    numbers_checked = []
+    for row in sudoku:
+            if row[column_no] !=0 and row[column_no] in numbers_checked:
+                return False
+            numbers_checked.append(row[column_no])
+    return True
+
+def block_correct(sudoku: list, row_no: int, column_no: int):
+    row = 0
+    column = 0
+    checked_numbers = []
+    while row < 3:
+        while column < 3:
+            if sudoku[row_no + row][column_no + column] in checked_numbers and sudoku[row_no + row][column_no + column] != 0:
+                return False
+            checked_numbers.append(sudoku[row_no + row][column_no + column])
+            column += 1
+        column = 0
+        row += 1
+    return True
+
+def sudoku_grid_correct(sudoku: list):
+    column_counter = 0
+    while column_counter < 9:
+        row = row_correct(sudoku, column_counter)
+        col = column_correct(sudoku, column_counter)
+        if row == False or col == False:
+            return False
+        column_counter += 1
+    block_row = 0
+    block_column = 0
+    while block_row <= 6:
+        while block_column <= 6:
+            block = block_correct(sudoku, block_row, block_column)
+            if block == False:
+                return False
+            block_column += 3
+        block_column = 0
+        block_row += 3
+    return True
+
+
+sudoku1 = [
+[9, 0, 0, 0, 8, 0, 3, 0, 0],
+[2, 0, 0, 2, 5, 0, 7, 0, 0],
+[0, 2, 0, 3, 0, 0, 0, 0, 4],
+[2, 9, 4, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 7, 3, 0, 5, 6, 0],
+[7, 0, 5, 0, 6, 0, 4, 0, 0],
+[0, 0, 7, 8, 0, 3, 9, 0, 0],
+[0, 0, 1, 0, 0, 0, 0, 0, 3],
+[3, 0, 0, 0, 0, 0, 0, 0, 2]
+]
+
+print(sudoku_grid_correct(sudoku1))
+
+sudoku2 = [
+[2, 6, 7, 8, 3, 9, 5, 0, 4],
+[9, 0, 3, 5, 1, 0, 6, 0, 0],
+[0, 5, 1, 6, 0, 0, 8, 3, 9],
+[5, 1, 9, 0, 4, 6, 3, 2, 8],
+[8, 0, 2, 1, 0, 5, 7, 0, 6],
+[6, 7, 4, 3, 2, 0, 0, 0, 5],
+[0, 0, 0, 4, 5, 7, 2, 6, 3],
+[3, 2, 0, 0, 8, 0, 0, 5, 7],
+[7, 4, 5, 0, 0, 3, 9, 0, 1]
+]
+
+print(sudoku_grid_correct(sudoku2))

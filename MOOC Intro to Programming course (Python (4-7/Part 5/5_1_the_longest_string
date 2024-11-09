@@ -1,0 +1,10 @@
+def longest(list:list):
+    longest = ""
+    for word in list:
+        if len(word) >= len(longest):
+            longest = word
+    return longest
+
+      
+strings = ["hi", "hiya", "hello", "howdydoody", "hi there"]
+print(longest(strings))

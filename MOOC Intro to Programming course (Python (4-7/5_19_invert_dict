@@ -1,0 +1,8 @@
+def invert (dictionary: dict):
+    inv_dict = {key : value for value, key in dictionary.items()}
+    dictionary.clear()
+    dictionary.update(inv_dict)
+
+s = {1: "first", 2: "second", 3: "third", 4: "fourth"}
+invert(s)
+print(s)

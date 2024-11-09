@@ -1,0 +1,17 @@
+phonelist = {}
+while True:
+    command = int(input("command( 1 search, 2 add, 3 quit):"))
+    if command == 1:
+        searchable_key = input("name:")
+        if searchable_key in phonelist:
+            print(phonelist[searchable_key])
+        else:
+            print("no number")
+    elif command == 2:
+        added_key = input("name:")
+        added_value = input("number:")
+        phonelist[added_key] = added_value
+        print("ok!")
+    elif command == 3:
+        print("quitting...")
+        break
