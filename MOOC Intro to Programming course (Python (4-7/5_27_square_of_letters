@@ -1,0 +1,12 @@
+def print_square(layers):
+    size = 2 * layers - 1
+    for i in range(size):
+        row = ''
+        for j in range(size):
+            layer = min(i, j, size - 1 - i, size - 1 - j)
+            letter = chr(65 + layers - 1 - layer)
+            row += letter
+        print(row)
+
+rows_needed = int(input("Layers:"))
+print_square(rows_needed)

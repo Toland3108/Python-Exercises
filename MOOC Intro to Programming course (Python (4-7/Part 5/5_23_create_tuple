@@ -1,0 +1,11 @@
+def create_tuple(x: int, y: int, z: int):
+    list = [x,y,z]
+    tup1 = min(list)
+    tup2 = max(list)
+    tup3 = sum(list)
+    tup = (tup1, tup2, tup3)
+    return tup
+
+
+
+print(create_tuple(5, 3, -1))

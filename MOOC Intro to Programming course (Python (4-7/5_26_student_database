@@ -1,0 +1,56 @@
+
+def add_student(database: dict, student: str):
+    database[student] = []
+
+def print_student(database: dict, student: str):
+    empty_key_text = " no completed courses"
+    if student in database:
+        print(f"{student}:")
+        if not database[student]:
+            print(empty_key_text)
+        else:
+            print(f" {len(database[student])} completed courses:")
+            total_credits = 0
+            for course in database[student]:
+                total_credits += course[1]
+                print(f"  {course[0]} {course[1]}")
+            average_credits = total_credits / len(database[student])
+            print(f" average grade {average_credits}")
+    else:
+        print(f"{student}: no such person in the database")
+
+def add_course(database: dict, student: str, course: tuple):
+ if student in database:
+        for i, existing_course in enumerate(database[student]):
+            if existing_course[0] == course[0]:  
+                if existing_course[1] < course[1]: 
+                    database[student][i] = course  
+                return
+        if course[1] != 0:
+            database[student].append(course)
+
+def summary(database:dict):
+    print(f"students {len(database)}")
+    most_courses_student = max(database, key=lambda student: len(database[student]))
+    most_courses_count = len(database[most_courses_student])   
+    print(f"most courses completed {most_courses_count} {most_courses_student}")
+    highest_average_student = max(database, key=lambda student: sum(course[1] for course in database[student]) / len(database[student]) if database[student] else 0)
+    highest_average_grade = sum(course[1] for course in database[highest_average_student]) / len(database[highest_average_student]) if database[highest_average_student] else 0
+    print(f"best average grade {highest_average_grade} {highest_average_student}")
+
+
+students = {}
+add_student(students, "Peter")
+add_student(students, "Eliza")
+add_course(students, "Peter", ("Data Structures and Algorithms", 1))
+add_course(students, "Peter", ("Introduction to Programming", 1))
+add_course(students, "Peter", ("Advanced Course in Programming", 1))
+add_course(students, "Eliza", ("Introduction to Programming", 5))
+add_course(students, "Eliza", ("Introduction to Computer Science", 4))
+summary(students)
+print_student(students, "Peter")
+print_student(students, "Eliza")
+print_student(students, "Jack")
+
+
+# First time I used multiple tools to proof read code. I used not only Python Tutor, but also AI to help fix/proof read my code. However I did not use AI to generate the code itself.
