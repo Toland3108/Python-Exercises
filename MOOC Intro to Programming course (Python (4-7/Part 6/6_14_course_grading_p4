@@ -1,0 +1,107 @@
+information = input("Student Information:")
+exercises = input("Exercises:")
+exam_p = input("Exam Points:")
+course_info = input("Course_Info")
+
+with open(course_info) as info_file:
+    for name_line in info_file:
+        name_line = name_line.strip()
+        name_parts = name_line.split(":")
+        if "name" in name_parts[0].lower():
+            course_name = name_parts[1].strip()
+        elif "study credits" in name_parts[0].lower():
+            course_credit = name_parts[1].strip()
+
+student_infos = {}
+
+with open(information) as file1:
+    for line_info in file1:
+        line_info = line_info.strip()
+        parts_info = line_info.split(";")
+        if parts_info[0] =="id":
+            continue
+        name = parts_info[1] + " " + parts_info [2]
+        student_infos[parts_info[0]] = name
+
+student_exercises = {}
+
+with open(exercises) as file2:
+    for line_exercises in file2:
+        line_exercises = line_exercises.strip()
+        parts_exercises = line_exercises.split(";")
+        if parts_exercises[0] == "id":
+            continue
+        student_exercises[parts_exercises[0]] = sum(int(exercise) for exercise in parts_exercises[1:])
+
+exam_points_sorted = {}
+
+with open(exam_p) as file3:
+    for line_exam_p in file3:
+        line_exam_p = line_exam_p.strip()
+        parts_exam_points = line_exam_p.split(";")
+        if parts_exam_points[0] == "id":
+            continue
+        exam_points_sorted[parts_exam_points[0]] = sum(int(exams)for exams in parts_exam_points[1:])
+
+student_exercise_points = {}
+
+for id, points in student_exercises.items():
+    exercises_per_student = student_exercises[id]
+    if exercises_per_student >= 4 and exercises_per_student < 8:
+        student_exercise_points[id] = 1
+    elif exercises_per_student >= 8 and exercises_per_student < 12:
+        student_exercise_points[id] = 2
+    elif exercises_per_student >= 12 and exercises_per_student < 16:
+        student_exercise_points[id] = 3
+    elif exercises_per_student >= 16 and exercises_per_student < 20:
+        student_exercise_points[id] = 4
+    elif exercises_per_student >= 20 and exercises_per_student < 24:
+        student_exercise_points[id] = 5
+    elif exercises_per_student >= 24 and exercises_per_student < 28:
+        student_exercise_points[id] = 6
+    elif exercises_per_student >= 28 and exercises_per_student < 32:
+        student_exercise_points[id] = 7
+    elif exercises_per_student >= 32 and exercises_per_student < 36:
+        student_exercise_points[id] = 8
+    elif exercises_per_student >= 36 and exercises_per_student < 40:
+        student_exercise_points[id] = 9
+    elif exercises_per_student == 40:
+        student_exercise_points[id] = 10
+    else:
+        student_exercise_points[id] = 0
+
+total_points = {}    
+for id, exam_points in exam_points_sorted.items():
+    total_points[id] = exam_points + student_exercise_points[id]
+
+grades = {}
+
+for id, points in total_points.items():
+    points_per_student = total_points[id]
+    if points_per_student >= 15 and points_per_student < 18:
+        grades[id] = 1
+    elif points_per_student >= 18 and points_per_student < 21:
+        grades[id] = 2
+    elif points_per_student >= 21 and points_per_student < 24:
+        grades[id] = 3
+    elif points_per_student >= 24 and points_per_student < 28:
+        grades[id] = 4
+    elif points_per_student >= 28:
+        grades[id] = 5
+    else:
+        grades[id] = 0
+
+with open("results.txt", "w") as file:
+    file.write(f"{course_name}, {course_credit} credits\n")
+    file.write(f"======================================\n")
+    file.write(f"name                          exec_nbr  exec_pts. exm_pts.  tot_pts.  grade\n")
+    for id, name in student_infos.items():
+        if id in student_infos:
+            file.write(f"{student_infos[id]:<30}{student_exercises[id]:<10}{student_exercise_points[id]:<10}{exam_points_sorted[id]:<10}{total_points[id]:<10}{grades[id]:<10}\n")
+    
+
+with open("results.csv", "w") as file2:
+    for id, name in student_infos.items():
+        addable = f"{id};{student_infos[id]};{grades[id]}"
+        file2.write(f"{addable}\n")
+print("Results written to files results.txt and results.csv")

@@ -1,0 +1,35 @@
+def filter_incorrect():
+    import re
+    
+
+    with open("lottery_numbers.csv", "r") as og_file, open("correct_numbers.csv", "w") as new_file:
+        for line in og_file:
+            line = line.strip() 
+            
+            try:
+                week, numbers = line.split(";")
+            except ValueError:
+                continue  
+            
+            if not re.match(r"^week \d+$", week):
+                continue
+            
+
+            numbers_list = numbers.split(",")
+            
+
+            if len(numbers_list) != 7:
+                continue
+            
+
+            try:
+                numbers_list = [int(num) for num in numbers_list]
+                if not all(1 <= num <= 39 for num in numbers_list):
+                    continue
+            except ValueError:
+                continue  
+            
+            if len(numbers_list) != len(set(numbers_list)):
+                continue
+            
+            new_file.write(line + "\n")

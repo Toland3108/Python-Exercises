@@ -1,0 +1,11 @@
+typed_string = input("Write text:")
+list_of_words = typed_string.split(" ")
+with open("wordlist.txt") as file:
+    wordlist = set(file.read().splitlines()) 
+wordlist = {word.lower() for word in wordlist}  
+for word in range(len(list_of_words)):
+    word_lower = list_of_words[word].lower()  
+    if word_lower not in wordlist:
+        list_of_words[word] = "*" + list_of_words[word] + "*"  
+
+print(" ".join(list_of_words))

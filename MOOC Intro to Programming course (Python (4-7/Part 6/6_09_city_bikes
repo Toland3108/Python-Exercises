@@ -1,0 +1,43 @@
+def get_station_data(filename: str):
+    station_dict = {}
+    with open(filename) as file:
+        for line in file:
+            line = line.strip()
+            line_parts = line.split(";")
+            if line_parts[0] == "Longitude":
+                continue
+            else:
+                station_dict[line_parts[3]] = (float(line_parts[0]), float(line_parts[1]))
+    return station_dict
+
+def  distance(stations: dict, station1: str, station2: str):
+    longitude1, latitude1 = stations[station1]
+    longitude2, latitude2 = stations[station2]
+    import math
+
+    x_km = (longitude1 - longitude2) * 55.26
+    y_km = (latitude1 - latitude2) * 111.2
+    distance_km = math.sqrt(x_km**2 + y_km**2)
+
+    return distance_km
+
+
+def greatest_distance(stations: dict):
+    max_distance = 0
+    station_pair = (None, None)
+
+    station_names = list(stations.keys())
+    for data in range(len(station_names)):
+        for index in range(data + 1, len(station_names)):
+            dist = distance(stations, station_names[data], station_names[index])
+            if dist > max_distance:
+                max_distance = dist
+                station_pair = (station_names[data], station_names[index])
+
+    return station_pair[0], station_pair[1], max_distance
+
+
+
+stations = get_station_data('stations1.csv')
+station1, station2, greatest = greatest_distance(stations)
+print(station1, station2, greatest)

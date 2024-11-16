@@ -1,0 +1,37 @@
+def row_sums():
+   row_sums_list = []
+   with open("matrix.txt") as file:
+      for line in file:
+         line = line.strip()
+         numbers = line.split(",")
+         sum_of_row = sum(int(number) for number in numbers)
+         row_sums_list.append(sum_of_row)
+      return row_sums_list
+
+def matrix_sum():
+   overall = 0
+   with open("matrix.txt") as file:
+      for line in file:
+         line = line.strip()
+         numbers = line.split(",")
+         sum_of_row = sum(int(number) for number in numbers)
+         overall += sum_of_row
+      return overall
+
+def matrix_max():
+   biggest = float('-inf')
+   with open("matrix.txt") as file:
+      for line in file:
+         line = line.strip()
+         new_line = line.split(",")
+         row_max = max(int(number) for number in new_line)
+         if row_max > biggest:
+            biggest = row_max
+      return biggest
+
+
+if __name__ == "__main__":
+   matrix_max()
+   matrix_sum()
+   row_sums()
+

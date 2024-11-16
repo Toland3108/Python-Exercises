@@ -1,0 +1,18 @@
+def filter_solutions():
+    with open("correct.csv", "w") as fil2, open("incorrect.csv", "w") as fil1:
+        pass
+
+    with open("correct.csv", "a") as correct_file, open("incorrect.csv", "a") as incorrect_file:
+            with open("solutions.csv") as file:
+                for line in file:
+                    line = line.strip()
+                    parted = line.split(";")
+
+                    expression = parted[1]
+                    expected_result = parted[2]
+
+                    actual_result = eval(expression)
+                    if actual_result == int(expected_result):
+                        correct_file.write(f"{parted[0]};{expression};{expected_result}\n")
+                    else:
+                        incorrect_file.write(f"{parted[0]};{expression};{expected_result}\n")

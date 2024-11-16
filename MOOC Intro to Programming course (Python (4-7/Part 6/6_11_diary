@@ -1,0 +1,21 @@
+with open("diary.txt", "a") as file:
+    while True:
+        print("1 - add an entry, 2 - read entries, 0 - quit")
+        try:
+            function_wanted = int(input("Function:"))
+            if function_wanted == 1:
+                entry = input("Diary Entry:")
+                file.write(f"{entry}\n")
+                print("Diary saved")
+                continue
+            elif function_wanted == 2:
+                print("Entries:")
+                with open("diary.txt") as file2:
+                    for row in file2:
+                        print(row)
+                continue
+            else:
+                print("Bye now!")
+                break
+        except ValueError:
+            print("Invalid input. Please enter a number.")

@@ -1,0 +1,85 @@
+def search_by_name(filename: str, word: str):
+    recipes_found = []
+    with open(filename) as file1:
+        lines = file1.read().splitlines()
+
+    word_lower = word.lower()
+    recipe_name = None
+
+    for line in lines:
+        if not line.strip(): 
+            recipe_name = None  
+            continue
+        if recipe_name is None:
+            recipe_name = line.strip()
+            if word_lower in recipe_name.lower():
+                recipes_found.append(recipe_name)
+
+    return recipes_found
+
+def search_by_time(filename: str, prep_time: int):
+    recipes_found = []
+    with open(filename) as file1:
+        lines = file1.read().splitlines()
+
+    index = 0
+    while index < len(lines):
+        recipe_name = lines[index].strip()
+        try:
+            recipe_prep_time = int(lines[index + 1].strip()) 
+        except (IndexError, ValueError):
+            index += 1  
+            continue
+
+        if recipe_prep_time <= prep_time:
+            recipes_found.append(f"{recipe_name}, preparation time {recipe_prep_time} min")
+
+        index += 2 
+        while index < len(lines) and lines[index].strip() != "":
+            index += 1
+        index += 1
+
+    return recipes_found
+
+def search_by_ingredient(filename: str, ingredient: str):
+    recipes_found = []
+    with open(filename) as file1:
+        lines = file1.read().splitlines()
+
+    index = 0
+    while index < len(lines):
+        recipe_name = lines[index].strip()
+        try:
+            recipe_prep_time = int(lines[index + 1].strip())
+        except (IndexError, ValueError):
+            index += 1
+            continue
+
+        index += 2
+        ingredient_found = False
+        while index < len(lines) and lines[index].strip() != "":
+            if ingredient.lower() in lines[index].lower():
+                ingredient_found = True
+            index += 1
+
+        if ingredient_found:
+            recipes_found.append(f"{recipe_name}, preparation time {recipe_prep_time} min")
+
+        index += 1
+
+    return recipes_found
+
+found_recipes = search_by_name("recipes1.txt", "cake")
+
+for recipe in found_recipes:
+    print(recipe)
+
+found_recipes_time = search_by_time("recipes1.txt", 20)
+
+for recipe1 in found_recipes_time:
+    print(recipe1)
+
+found_recipes_ing = search_by_ingredient("recipes1.txt", "eggs")
+
+for recipe2 in found_recipes_ing:
+    print(recipe2)

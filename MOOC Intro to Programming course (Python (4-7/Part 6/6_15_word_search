@@ -1,0 +1,23 @@
+def find_words(search_term: str):
+    with open("words.txt", "r") as file:
+        words = file.read().splitlines()
+    
+    matched_words = []
+    
+    if "*" in search_term:
+        if search_term.startswith("*"):
+            suffix = search_term[1:]
+            matched_words = [word for word in words if word.endswith(suffix)]
+        elif search_term.endswith("*"):
+            prefix = search_term[:-1]
+            matched_words = [word for word in words if word.startswith(prefix)]
+    
+    elif "." in search_term:
+        import re
+        regex_pattern = "^" + search_term.replace(".", ".") + "$"
+        matched_words = [word for word in words if re.match(regex_pattern, word)]
+    
+    else:
+        matched_words = [word for word in words if word == search_term]
+    
+    return matched_words

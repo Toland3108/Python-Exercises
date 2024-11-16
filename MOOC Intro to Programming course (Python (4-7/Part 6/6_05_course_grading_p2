@@ -1,0 +1,174 @@
+
+information = input("Student Information:")
+exercises = input("Exercises:")
+exam_p = input("Exam Points:")
+
+
+student_infos = {}
+
+with open(information) as file1:
+    for line_info in file1:
+        line_info = line_info.strip()
+        parts_info = line_info.split(";")
+        if parts_info[0] =="id":
+            continue
+        name = parts_info[1] + " " + parts_info [2]
+        student_infos[parts_info[0]] = name
+
+student_exercises = {}
+
+with open(exercises) as file2:
+    for line_exercises in file2:
+        line_exercises = line_exercises.strip()
+        parts_exercises = line_exercises.split(";")
+        if parts_exercises[0] == "id":
+            continue
+        student_exercises[parts_exercises[0]] = sum(int(exercise) for exercise in parts_exercises[1:])
+
+exam_points_sorted = {}
+
+with open(exam_p) as file3:
+    for line_exam_p in file3:
+        line_exam_p = line_exam_p.strip()
+        parts_exam_points = line_exam_p.split(";")
+        if parts_exam_points[0] == "id":
+            continue
+        exam_points_sorted[parts_exam_points[0]] = sum(int(exams)for exams in parts_exam_points[1:])
+
+student_exercise_points = {}
+
+for id, points in student_exercises.items():
+    exercises_per_student = student_exercises[id]
+    if exercises_per_student >= 4 and exercises_per_student < 8:
+        student_exercise_points[id] = 1
+    elif exercises_per_student >= 8 and exercises_per_student < 12:
+        student_exercise_points[id] = 2
+    elif exercises_per_student >= 12 and exercises_per_student < 16:
+        student_exercise_points[id] = 3
+    elif exercises_per_student >= 16 and exercises_per_student < 20:
+        student_exercise_points[id] = 4
+    elif exercises_per_student >= 20 and exercises_per_student < 24:
+        student_exercise_points[id] = 5
+    elif exercises_per_student >= 24 and exercises_per_student < 28:
+        student_exercise_points[id] = 6
+    elif exercises_per_student >= 28 and exercises_per_student < 32:
+        student_exercise_points[id] = 7
+    elif exercises_per_student >= 32 and exercises_per_student < 36:
+        student_exercise_points[id] = 8
+    elif exercises_per_student >= 36 and exercises_per_student < 40:
+        student_exercise_points[id] = 9
+    elif exercises_per_student == 40:
+        student_exercise_points[id] = 10
+    else:
+        student_exercise_points[id] = 0
+
+total_points = {}    
+for id, exam_points in exam_points_sorted.items():
+    total_points[id] = exam_points + student_exercise_points[id]
+
+grades = {}
+
+for id, points in total_points.items():
+    points_per_student = total_points[id]
+    if points_per_student >= 15 and points_per_student < 18:
+        grades[id] = 1
+    elif points_per_student >= 18 and points_per_student < 21:
+        grades[id] = 2
+    elif points_per_student >= 21 and points_per_student < 24:
+        grades[id] = 3
+    elif points_per_student >= 24 and points_per_student < 28:
+        grades[id] = 4
+    elif points_per_student >= 28:
+        grades[id] = 5
+    else:
+        grades[id] = 0
+
+for id, name in student_infos.items():
+    if id in student_infos:
+        grade = grades[id]
+        print(f"{name} {grade}")
+    else:
+        print("Student Not Found")
+
+#above is my handwritten original code. No AI help was used at all.
+#Below is AI enhanced variant of the same piece of code. Focus was on optimising the code. Directly copied.
+
+def parse_file(filename, start_index=1):
+    """Utility function to parse CSV-like files and return a dictionary of id -> value."""
+    data = {}
+    with open(filename) as file:
+        for line in file:
+            line = line.strip()
+            parts = line.split(";")
+            if parts[0] == "id":
+                continue
+            # For exercises or exam points, sum the values in the rest of the list.
+            if start_index > 1:
+                data[parts[0]] = sum(int(x) for x in parts[start_index:])
+            else:
+                data[parts[0]] = ' '.join(parts[1:3])  # Name parsing
+    return data
+
+# Inputs for file paths
+information = input("Student Information: ")
+exercises = input("Exercises: ")
+exam_p = input("Exam Points: ")
+
+# Step 1: Parse the files
+student_infos = parse_file(information, start_index=1)
+student_exercises = parse_file(exercises, start_index=1)
+exam_points_sorted = parse_file(exam_p, start_index=1)
+
+# Step 2: Calculate exercise points
+student_exercise_points = {}
+for id, points in student_exercises.items():
+    exercise_points = points
+    if exercise_points >= 4 and exercise_points < 8:
+        student_exercise_points[id] = 1
+    elif exercise_points >= 8 and exercise_points < 12:
+        student_exercise_points[id] = 2
+    elif exercise_points >= 12 and exercise_points < 16:
+        student_exercise_points[id] = 3
+    elif exercise_points >= 16 and exercise_points < 20:
+        student_exercise_points[id] = 4
+    elif exercise_points >= 20 and exercise_points < 24:
+        student_exercise_points[id] = 5
+    elif exercise_points >= 24 and exercise_points < 28:
+        student_exercise_points[id] = 6
+    elif exercise_points >= 28 and exercise_points < 32:
+        student_exercise_points[id] = 7
+    elif exercise_points >= 32 and exercise_points < 36:
+        student_exercise_points[id] = 8
+    elif exercise_points >= 36 and exercise_points < 40:
+        student_exercise_points[id] = 9
+    elif exercise_points == 40:
+        student_exercise_points[id] = 10
+    else:
+        student_exercise_points[id] = 0
+
+# Step 3: Calculate total points (exam + exercise)
+total_points = {
+    id: exam_points + student_exercise_points.get(id, 0)
+    for id, exam_points in exam_points_sorted.items()
+}
+
+# Step 4: Assign grades based on total points
+grades = {}
+for id, points in total_points.items():
+    if points >= 28:
+        grades[id] = 5
+    elif points >= 24:
+        grades[id] = 4
+    elif points >= 21:
+        grades[id] = 3
+    elif points >= 18:
+        grades[id] = 2
+    elif points >= 15:
+        grades[id] = 1
+    else:
+        grades[id] = 0
+
+# Step 5: Print results
+for id, name in student_infos.items():
+    grade = grades.get(id, 0)  # Default to 0 if student doesn't have a grade
+    print(f"{name} {grade}")

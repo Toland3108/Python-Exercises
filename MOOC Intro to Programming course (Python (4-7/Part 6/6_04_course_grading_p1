@@ -1,0 +1,33 @@
+
+information = input("Student Information:")
+exercises = input("Exercises:")
+
+
+student_infos = {}
+
+with open(information) as file1:
+    for line in file1:
+        line = line.strip()
+        parts = line.split(";")
+        if parts[0] =="id":
+            continue
+        name = parts[1] + " " + parts [2]
+        student_infos[parts[0]] = name
+
+student_exercises = {}
+
+with open(exercises) as file2:
+    for line in file2:
+        line = line.strip()
+        parts = line.split(";")
+        if parts[0] == "id":
+            continue
+        student_exercises[parts[0]] = sum(int(exercise) for exercise in parts[1:])
+
+
+for id, name in student_infos.items():
+    if id in student_infos:
+        exercise_amount = student_exercises[id]
+        print(f"{name} {exercise_amount}")
+    else:
+        print("Student Not Found")

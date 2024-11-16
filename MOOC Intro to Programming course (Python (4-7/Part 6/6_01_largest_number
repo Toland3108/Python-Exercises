@@ -1,0 +1,6 @@
+def largest():
+    with open("numbers.txt") as file:
+        return (int(max(file)))
+
+if __name__ == "__main__":
+    largest()

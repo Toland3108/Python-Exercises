@@ -1,0 +1,20 @@
+while True:
+    print("1 - Add word, 2 - Search, 3 - Quit")
+    wanted_function = int(input("Function:"))
+    if wanted_function == 1:
+        dict_key = input("The word in Finnish:")
+        dict_entry = input("The word in English:")
+        with open("dictionary.txt", "a") as file:
+            file.write(f"{dict_key} - {dict_entry}\n")
+        print("Dictionary entry added")
+
+    elif wanted_function == 2:
+        search_term = input("Search Term:")
+        with open("dictionary.txt", "r") as file2:
+            for row in file2:
+                if search_term in row:
+                    print(row)
+
+    elif wanted_function == 3:
+        print("Bye")
+        break

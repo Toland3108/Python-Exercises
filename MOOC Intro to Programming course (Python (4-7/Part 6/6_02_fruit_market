@@ -1,0 +1,12 @@
+def read_fruits():
+    dict = {}
+    with open("fruits.csv") as file:
+        for line in file:
+            line = line.replace("/n", "")
+            parts = line.split(";")
+            fruit = parts[0]
+            price = float(parts[1])
+            dict[fruit] = price
+    return dict
+if __name__ == "__main__":
+    read_fruits()

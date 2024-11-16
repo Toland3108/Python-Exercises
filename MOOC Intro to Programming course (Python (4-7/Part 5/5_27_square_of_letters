@@ -10,3 +10,6 @@ def print_square(layers):
 
 rows_needed = int(input("Layers:"))
 print_square(rows_needed)
+
+
+# I had 0 clue about this one. Used AI to help me understand the task itself.
