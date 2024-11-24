@@ -1,0 +1,38 @@
+import difflib
+
+def get_suggestions(word, wordlist):
+    """Return a list of close matches for a misspelled word."""
+    return difflib.get_close_matches(word, wordlist, n=3, cutoff=0.7)
+
+def spell_check():
+    typed_string = input("Write text: ")
+    
+    list_of_words = typed_string.split(" ")
+    
+    with open("wordlist.txt") as file:
+        wordlist = set(file.read().splitlines())
+    
+    wordlist = {word.lower() for word in wordlist}
+    
+    corrected_words = []
+    
+    suggestions_dict = {}
+    
+    for word in list_of_words:
+        word_lower = word.lower()
+        
+        if word_lower not in wordlist:
+            corrected_words.append(f"*{word}*")
+            suggestions = get_suggestions(word_lower, wordlist)
+            suggestions_dict[word] = suggestions
+        else:
+            corrected_words.append(word)
+    
+    print(" ".join(corrected_words))
+    
+    print("suggestions:")
+    for word, suggestions in suggestions_dict.items():
+        if suggestions:
+            print(f"{word}: {', '.join(suggestions)}")
+
+spell_check()

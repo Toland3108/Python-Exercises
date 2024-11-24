@@ -1,0 +1,9 @@
+from fractions import Fraction
+
+def fractionate(amount: int):
+    if amount <= 0:
+        raise ValueError("Amount must be a positive integer.")
+    
+    part = Fraction(1, amount)
+    return [part] * amount
+

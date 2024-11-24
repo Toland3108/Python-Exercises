@@ -1,0 +1,17 @@
+import json
+
+def print_persons(filename: str):
+
+    with open(filename, 'r') as file:
+        data = json.load(file)
+    
+
+    for person in data:
+        name = person["name"]
+        age = person["age"]
+        hobbies = person["hobbies"]
+        
+
+        hobbies_str = ", ".join(hobbies)
+        
+        print(f"{name} {age} years ({hobbies_str})")

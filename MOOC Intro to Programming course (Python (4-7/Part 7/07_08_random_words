@@ -1,0 +1,11 @@
+import random
+
+def words(n: int, beginning: str):
+
+    with open("words.txt", "r") as file:
+        filtered_words = [word.strip() for word in file if word.startswith(beginning)]
+    
+    if len(filtered_words) < n:
+        raise ValueError(f"Not enough words start with '{beginning}'. Found {len(filtered_words)}.")
+
+    return random.sample(filtered_words, n)

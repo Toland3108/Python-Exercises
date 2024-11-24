@@ -1,0 +1,42 @@
+from datetime import datetime, timedelta
+
+def main():
+    filename = input("Filename: ")
+
+    start_date_str = input("Starting date (dd.mm.yyyy): ")
+    start_date = datetime.strptime(start_date_str, "%d.%m.%Y")
+    num_days = int(input("How many days: "))
+
+    total_minutes = 0
+    screen_time_entries = []
+
+    print("Please type in screen time in minutes on each day (TV computer mobile):")
+
+    for i in range(num_days):
+        current_date = start_date + timedelta(days=i)
+        date_str = current_date.strftime("%d.%m.%Y")
+        screen_time = input(f"Screen time {date_str}: ")
+        
+        tv, computer, mobile = map(int, screen_time.split())
+        daily_total = tv + computer + mobile
+        
+        total_minutes += daily_total
+        screen_time_entries.append((date_str, tv, computer, mobile))
+
+    average_minutes = total_minutes / num_days
+
+    with open(filename, "w") as file:
+        start_date_formatted = start_date.strftime("%d.%m.%Y")
+        end_date = start_date + timedelta(days=num_days - 1)
+        end_date_formatted = end_date.strftime("%d.%m.%Y")
+        file.write(f"Time period: {start_date_formatted}-{end_date_formatted}\n")
+        file.write(f"Total minutes: {total_minutes}\n")
+        file.write(f"Average minutes: {average_minutes:.1f}\n")
+        
+        for entry in screen_time_entries:
+            date_str, tv, computer, mobile = entry
+            file.write(f"{date_str}: {tv}/{computer}/{mobile}\n")
+    
+    print(f"Data stored in file {filename}")
+
+main()

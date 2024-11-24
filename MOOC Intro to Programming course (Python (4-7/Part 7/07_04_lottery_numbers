@@ -1,0 +1,7 @@
+import random
+def lottery_numbers(amount: int, lower: int, upper: int):
+    if amount > (upper - lower + 1):
+        raise ValueError("Amount cannot exceed the range of unique numbers available.")
+
+    numbers = random.sample(range(lower, upper + 1), amount)
+    return sorted(numbers)
