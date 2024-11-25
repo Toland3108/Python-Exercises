@@ -1,0 +1,6 @@
+from datetime import date
+
+def list_years(dates: list) -> list:
+    years = [d.year for d in dates]
+    years.sort()
+    return years
