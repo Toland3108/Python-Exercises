@@ -1,0 +1,34 @@
+class Money:
+    def __init__(self, euros: int, cents: int):
+        self.__euros = euros
+        self.__cents = cents
+
+    def __str__(self):
+        return f"{self.__euros}.{self.__cents:02d} eur"
+
+    def __eq__(self, another):
+        return self.__total_cents() == another.__total_cents()
+
+    def __lt__(self, another):
+        return self.__total_cents() < another.__total_cents()
+
+    def __gt__(self, another):
+        return self.__total_cents() > another.__total_cents()
+
+    def __ne__(self, another):
+        return not self == another
+
+    def __add__(self, another):
+        total_cents = self.__total_cents() + another.__total_cents()
+        euros, cents = divmod(total_cents, 100)
+        return Money(euros, cents)
+
+    def __sub__(self, another):
+        total_cents = self.__total_cents() - another.__total_cents()
+        if total_cents < 0:
+            raise ValueError("A negative result is not allowed")
+        euros, cents = divmod(total_cents, 100)
+        return Money(euros, cents)
+
+    def __total_cents(self):
+        return self.__euros * 100 + self.__cents
