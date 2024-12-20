@@ -1,0 +1,21 @@
+def balanced_brackets(my_string: str, stack=None):
+    if stack is None:
+        stack = []
+    
+    if not my_string:
+        return len(stack) == 0
+    
+    char = my_string[0]
+    
+    if char not in '()[]':
+        return balanced_brackets(my_string[1:], stack)
+    
+    if char in '([':
+        stack.append(char)
+    elif char in ')]':
+        if not stack:
+            return False
+        top = stack.pop()
+        if (char == ')' and top != '(') or (char == ']' and top != '['):
+            return False  
+    return balanced_brackets(my_string[1:], stack)

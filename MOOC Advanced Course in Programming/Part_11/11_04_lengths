@@ -1,0 +1,2 @@
+def lengths(lists: list):
+    return [len(sublist) for sublist in lists]
